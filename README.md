@@ -43,3 +43,21 @@ ETIQUETA_VALIDA:
 IF var ETIQUETA_VALIDA:
 # Solo se puede volver para atras en las etiquetas, no avanzar
 ```
+
+### Ejemplos de código
+
+```python
+# Codigo que convierte a = c ** b
+a = + 1
+b = + 2
+c = + 9
+
+ETI:
+
+a = * a c
+b = - b 1
+
+IF b ETI:
+a
+
+```
