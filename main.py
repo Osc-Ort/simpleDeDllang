@@ -17,7 +17,7 @@ def main():
                 data = list(Path(arch).read_text().splitlines())
                 for data_t in data:
                     data_t = data_t.strip()
-                    if data_t:
+                    if data_t and not data_t.startswith("#"):
                         for inf in data_t.split(";"):
                             textos.append(inf)
             except FileNotFoundError as _:
