@@ -8,8 +8,21 @@ class BadIntruction(Exception):
     pass
 
 
+etiquetas: dict[str, int] = {}
+
+
 def ejecucionIntrucciones(instrs: list[str]):
     variables: dict[str, tiposPermitidos] = {}
+    # Guardamos todas las primeras posiciones de las etiquetas
+    i = 0
+    while i < len(instrs):
+        inst = instrs[i]
+        inst: list[str] = inst.strip().split()
+        if len(inst) == 1:  # O variables solas o etiquetas
+            inst: str = inst[0]
+            if inst.endswith(":") and inst not in etiquetas:
+                etiquetas[inst] = i
+        i += 1
     try:
         i = 0
         while i < len(instrs):
@@ -21,8 +34,7 @@ def ejecucionIntrucciones(instrs: list[str]):
 
 
 asignacion: Final[set[str]] = {"="}
-operadores_bin: Final[set[str]] = {"+", "-", "/", "*"}
-etiquetas: dict[str, int] = {}
+operadores_bin: Final[set[str]] = {"+", "-", "/", "*", "^", "|", "&"}
 
 
 def ejecutarIntruccion(
@@ -46,19 +58,26 @@ def ejecutarIntruccion(
     elif inst[0] == "IF":  # Los IFs
         if interactivo:
             raise BadIntruction("No permitidos los IFs en modo interactivo.")
-        if len(inst) > 3:
+        if (len(inst) > 3 and "NOT" != inst[1]) or (len(inst) > 4 and "NOT" != inst[1]):
             raise BadIntruction(
                 i, f"Los IFs solo son seguidos de una variable y una etiqueta. {inst}"
             )
-        var = inst[1]
-        etiqueta = inst[2]
+        if "NOT" == inst[1]:
+            var = inst[2]
+            etiqueta = inst[3]
+        else:
+            var = inst[1]
+            etiqueta = inst[2]
         if not etiqueta.endswith(":"):
             etiqueta += ":"
         if var not in variables:
             raise BadIntruction(i, f"Variable {var} no existente.")
         if etiqueta not in etiquetas:
-            raise BadIntruction(i, f"Etiqueta {var} no existente.")
-        if int(variables[var]):
+            # Como en el modelo GOTO, etiquetas no existentes terminan el programa
+            return 10**100
+        if (inst[1] != "NOT" and int(variables[var]) > 0) or (
+            inst[1] == "NOT" and int(variables[var]) <= 0
+        ):
             return etiquetas[etiqueta]
         else:
             return i + 1
@@ -101,6 +120,27 @@ def ejecutarIntruccion(
                     lambda x: variables[x] if x in variables else float(x), inst_c[1:]
                 ):
                     res *= num
+            case "^" | "|" | "&":
+                nums: list[int] = list(
+                    map(
+                        lambda x: int(variables[x]) if x in variables else int(x),
+                        inst_c[1:],
+                    )
+                )
+                match inst_c[0]:
+                    case "^":
+                        res = 0
+                        for num in nums:
+                            res ^= num
+                    case "|":
+                        res = 0
+                        for num in nums:
+                            res |= num
+                    case "&":
+                        res = nums[0]
+                        for num in nums[1:]:
+                            res &= num
+                res = float(res)
         if inst[1] in asignacion:
             variables[inst[0]] = res
         else:

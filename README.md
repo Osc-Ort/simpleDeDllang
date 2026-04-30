@@ -15,7 +15,10 @@ Dos modos de uso:
 
 ## Características
 
+Todos los numeros son de tipo coma flotante.
 Operaciones básicas de suma, resta, división y multiplicación.
+Los operadores lógicos tienen una característica, se realizan las operaciones con las 
+conversiones a entero y se vuelve a convertir a float, por lo que si solos sirven como operación floor.
 
 Sintaxis:
 
@@ -39,9 +42,9 @@ ope datos... ; var = ...
 # Etiquetas deben de terminar en :
 ETIQUETA_VALIDA:
 
-# Salto si el valor de la variable es distinta de 0
+# Salto si el valor de la variable es mayor a 0
 IF var ETIQUETA_VALIDA:
-# Solo se puede volver para atras en las etiquetas, no avanzar
+IF NOT var ETIQUETA_VALIDA 
 ```
 
 ### Ejemplos de código
@@ -58,6 +61,34 @@ a = * a c
 b = - b 1
 
 IF b ETI:
+a
+
+```
+```python
+# Código de MCD 
+a = + 15
+b = + 10
+true = + 1
+
+MCD:
+IF NOT b FIN
+
+RESTO:
+diff = - a b
+diff = + diff 1
+IF NOT diff FIN_RESTO
+a = - diff 1
+
+IF true RESTO
+FIN_RESTO:
+
+# Un swap
+a = ^ a b
+b = ^ a b
+a = ^ a b
+IF true MCD
+
+FIN:
 a
 
 ```
