@@ -51,17 +51,17 @@ IF NOT var ETIQUETA_VALIDA
 ### Ejemplos de código
 
 ```python
-# Codigo que convierte a = c ** b
+# Codigo que convierte a = b ** c
 a = + 1
-b = + 2
-c = + 9
+b = + 9
+c = + 2
 
 ETI:
 
-a = * a c
-b = - b 1
+a = * a b
+c = - c 1
 
-IF b ETI:
+IF c ETI:
 a
 
 ```
