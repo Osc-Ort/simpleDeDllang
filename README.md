@@ -51,7 +51,7 @@ IF NOT var ETIQUETA_VALIDA
 ### Ejemplos de código
 
 ```python
-# Codigo que convierte a = b ** c
+# Codigo que calcula a = b ** c
 a = + 1
 b = + 9
 c = + 2
