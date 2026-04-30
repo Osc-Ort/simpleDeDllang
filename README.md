@@ -12,6 +12,7 @@ Dos modos de uso:
 + Archivo:
   + Se accede ejecutando con archivos como argumentos al main.py.
   + Turing completo y permite todas las funcionalidades de este programa.
+  + Permite varios archivos, todos seran concatenados.
 
 ## Características
 
