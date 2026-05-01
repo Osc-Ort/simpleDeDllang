@@ -44,10 +44,10 @@ def ejecutarIntruccion(
     if not inst:
         raise Exception("Error fatal")
     if len(inst) == 1:  # O variables solas o etiquetas
-        if interactivo:
-            raise BadIntruction("No permitidas las etiquetas en modo interactivo.")
         inst: str = inst[0]
         if inst.endswith(":"):
+            if interactivo:
+                raise BadIntruction("No permitidas las etiquetas en modo interactivo.")
             etiquetas[inst] = i
             return i + 1
         elif inst in variables:
