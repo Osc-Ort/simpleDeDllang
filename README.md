@@ -93,3 +93,55 @@ FIN:
 a
 
 ```
+
+```python
+# Código calculo secuencia de fibonacchi
+n = + 10
+a = + 0
+b = + 1
+
+TRUE = + 1
+
+# Caso de n == 0
+IF n CONT
+a
+IF TRUE EXIT
+CONT:
+n = - n 1
+# Caso de n == 1
+IF n CONT2
+b
+IF TRUE EXIT
+CONT2:
+
+BUCLE:
+# Comentar siguiente linea si no se quieren todos los números solo el resultado 
+a
+a = + a b
+a = ^ a b
+b = ^ a b
+a = ^ a b
+
+n = - n 1
+
+IF n BUCLE
+a
+
+```
+
+```python
+# b = a!
+a = + 10
+b = + 1
+
+# Caso a <= 0
+IF NOT a EXIT
+FACT:
+b = * b a
+a = - a 1
+
+IF a FACT
+EXIT:
+b
+
+```
